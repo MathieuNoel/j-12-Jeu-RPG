@@ -1,5 +1,8 @@
 body {
   background: #ddd;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 .player {
@@ -10,4 +13,39 @@ body {
   border-color: transparent transparent transparent blue;
 
   margin: 20px;
+}
+
+#board {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.row .cell {
+  border: 1px solid #000;
+  width: 70px;
+  height: 70px;
+}
+
+.row {
+  display: flex;
+}
+
+.targetCell {
+  background-color: green;
+}
+
+.right {
+  transform: rotate(0deg)
+}
+
+.up {
+  transform: rotate(-90deg)
+}
+.left {
+  transform: rotate(180deg)
+}
+.down {
+  transform: rotate(90deg)
 }
