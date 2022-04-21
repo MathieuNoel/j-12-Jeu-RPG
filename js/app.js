@@ -49,7 +49,7 @@ var app = {
     app.counter++
     app.redDrawBoard()
     }
-    },
+  },
 
   turnLeft() {
     if(app.gameOver===false){
