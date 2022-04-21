@@ -1,4 +1,5 @@
 var app = {
+  gameOver: false,
   player : {
     x: 0,
     y: 0,
@@ -9,7 +10,23 @@ var app = {
     y: 3,
   },
 
+  listenKeyboardEvents() {
+      document.addEventListener('keyup', (event) =>{
+        if(event.key == "ArrowLeft") {
+          app.turnLeft()
+        } else if(event.key == "ArrowRight") {
+          app.turnRight()
+        } else if(event.key == "ArrowUp") {
+          app.moveForward()
+        } else {
+          return
+        }
+      }
+    )
+  },
+
   moveForward() {
+    if(app.gameOver===false){
     if(app.player.direction === 'right' && app.player.x === 5){
       return
     } else if(app.player.direction === 'down' && app.player.y === 3){
@@ -29,9 +46,11 @@ var app = {
       app.player.y++
     }
     app.redDrawBoard()
+    }
     },
 
   turnLeft() {
+    if(app.gameOver===false){
     if(app.player.direction === 'right') {
       app.player.direction = 'up'        
      } else if(app.player.direction === 'up') {
@@ -42,9 +61,11 @@ var app = {
       app.player.direction = 'right'
      }
      app.redDrawBoard()
+    }
   },
   
   turnRight(direction) {
+    if(app.gameOver===false){
     if(app.player.direction === 'right') {
       app.player.direction = 'down'
      } else if(app.player.direction === 'down') {
@@ -55,6 +76,7 @@ var app = {
       app.player.direction = 'right'
      }
      app.redDrawBoard()
+    }
   },
   drawBoard() {
     
@@ -83,18 +105,24 @@ var app = {
     };
      
   },
+
+  gameOver() {
+    
+  },
   
-   clearBoard() {
+  clearBoard() {
     document.getElementById('board').innerHTML = ' ';
   },
   
-   redDrawBoard() {
+  redDrawBoard() {
      app.clearBoard()
      app.drawBoard()
   },
   
   init: function () {
+    app.listenKeyboardEvents()
     app.drawBoard();
+    
     console.log('init !');
   }
 
