@@ -1,5 +1,6 @@
 var app = {
   gameOver: false,
+  counter: 0,
   player : {
     x: 0,
     y: 0,
@@ -45,6 +46,7 @@ var app = {
     } else {
       app.player.y++
     }
+    app.counter++
     app.redDrawBoard()
     }
     },
@@ -60,6 +62,7 @@ var app = {
      } else if(app.player.direction === 'down') {
       app.player.direction = 'right'
      }
+     app.counter++
      app.redDrawBoard()
     }
   },
@@ -75,6 +78,7 @@ var app = {
      } else if(app.player.direction === 'up') {
       app.player.direction = 'right'
      }
+     app.counter++
      app.redDrawBoard()
     }
   },
@@ -103,11 +107,14 @@ var app = {
         }    
       };
     };
-     
+    app.isGameOver()   
   },
 
-  gameOver() {
-    
+  isGameOver() {
+    if (app.player.x === app.targetCell.x && app.player.y === app.targetCell.y){
+      alert('tada! vous avez effectuer ' + app.counter + ' mouvements')
+      app.gameOver = 'true';      
+    }
   },
   
   clearBoard() {
